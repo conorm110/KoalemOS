@@ -9,7 +9,8 @@ call ReadDisk
 
 jmp PROGRAM_SPACE
 
-%include "boot/diskread.asm"
+%include "print.asm"
+%include "DiskRead.asm"
 
 times 510-($-$$) db 0
 

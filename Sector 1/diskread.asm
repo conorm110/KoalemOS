@@ -12,8 +12,18 @@ ReadDisk:
 
     int 0x13
 
+    jc DiskReadFailed
 
     ret
 
 BOOT_DISK:
     db 0
+
+DiskReadErrorString:
+    db 'CRIT ERROR EXTPRG FAILED TO LOAD',0
+
+DiskReadFailed:
+    mov bx, DiskReadErrorString
+    call PrintString
+
+    jmp $
