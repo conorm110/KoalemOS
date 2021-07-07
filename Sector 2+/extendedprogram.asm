@@ -7,6 +7,8 @@ jmp extendedprogram
 %include "VESA/pixel_draw.asm"
 %include "VESA/vesa_cmd.asm"
 %include "BIOS_Keyboard/keyboard.asm"
+%include "Program/terminal.asm"
+%include "Program/os_main.asm"
 
 sector2entercode:
     db 'Sector 2+ Entered...                                                            ',0
@@ -40,20 +42,6 @@ extendedprogram:
     mov  bx, graphicsmodegood
     call PrintString
 
-    mov dh, 0x00
+    jmp os_main_func
 
-    loop:
-        mov ah, 0x00       ; tell bios to get current key
-        int 0x16           ; activate interupt
-
-        mov bh,ah          ; put keyboard value into upper bh
-        call mapChar       ; map keyboard
-        mov [Char],bh      ; put bh into char
-
-        mov bx, Char       ; pass char to print
-        call PrintString   ; print char
-        jmp loop
-Char:
-    db "f",0
-
-times 1024-($-$$) db 0
+times 2048-($-$$) db 0
