@@ -7,8 +7,8 @@ jmp extendedprogram
 %include "VESA/pixel_draw.asm"
 %include "VESA/vesa_cmd.asm"
 %include "BIOS_Keyboard/keyboard.asm"
-%include "Program/terminal.asm"
-%include "Program/os_main.asm"
+%include "progs/terminal/terminal.asm"
+%include "OS/os_main.asm"
 
 sector2entercode:
     db 'Sector 2+ Entered...                                                            ',0

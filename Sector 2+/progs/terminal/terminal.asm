@@ -4,6 +4,7 @@ terminal:
     mov bx, welcomestring
     call PrintString
     terminal_loop:
+        ; keyboard driver
         mov ah, 0x00       ; tell bios to get current key
         int 0x16           ; activate interupt
 
@@ -11,8 +12,12 @@ terminal:
         call mapChar       ; map keyboard
         mov [Char],bh      ; put bh into char
 
+
         mov bx, Char       ; pass char to print
         call PrintString   ; print char
+
+        
+
         jmp terminal_loop
 Char:
     db "f",0
@@ -20,4 +25,4 @@ Char:
 enterterminalalert:
     db 'Terminal Entered...                                                             ',0
 welcomestring:
-    db '                           Welcome to KoalemOS 0.01                             ',0
+    db '                           Welcome to KoalemOS 0.02                             ',0
