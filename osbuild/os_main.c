@@ -4,7 +4,7 @@
 #include "terminal_helpers.h"
 #include "k_string.h"
 #include "k_stdio.h"
-
+#include "interrupts.h"
 
 /**
  * os_main - main os loop
@@ -14,7 +14,7 @@
  */
 void os_main()
 {
-    puts("_KoalemOS\n~/>");
+    puts("KoalemOS\n~/>");
 
     while (1)
     {
@@ -28,6 +28,11 @@ void os_main()
         {
             puts(remove_first_chars(line, 5));
             puts("\n~/>");
+        }
+        else if (memcmp((int)(line), (int)("exit"), 4) == 0)
+        {
+            puts("shutting down...\n");
+            shutdown();
         }
         else
         {

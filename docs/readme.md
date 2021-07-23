@@ -68,3 +68,4 @@ The operating system is passed all the functions from the kernel, just as would 
 ### Supported Commands
 - cls: clears screen
 - echo \[arg1\]: prints arg1
+- exit: end all tasks (basically shutdown)

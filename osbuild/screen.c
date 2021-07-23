@@ -69,3 +69,15 @@ void init_video()
     vidptr = (unsigned char *)0xB8000;
     cls();
 }
+
+/**
+ * disable_cursor - disable hw cursor
+ * 
+ * Use vesa commands to turn off hw
+ * cursor
+ */
+void disable_cursor()
+{
+    write_port(0x3D4, 0x0A);
+	write_port(0x3D5, 0x20);
+}

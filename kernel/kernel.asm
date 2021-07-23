@@ -10,6 +10,7 @@ global read_port
 global write_port
 global load_idt
 global keyboard_interrupt_handler
+global halt_program
 extern kmain
 extern keyboard_handler
 
@@ -51,3 +52,6 @@ load_idt:
 ; Handle a keyboard interrupt by calling our C function
 keyboard_interrupt_handler:
     ret
+
+halt_program:
+    hlt
