@@ -414,8 +414,3 @@ size_t strxfrm(char *s1, const char *s2, size_t n)
     return len;
 }
 
-char *remove_first_chars(char s1[], int n)
-{
-    char *s2 = s1 + n;
-    return s2;
-}

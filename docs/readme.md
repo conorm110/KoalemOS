@@ -63,3 +63,8 @@ Many std libs did not work properly when included (especially if using MinGW). L
 - stdio.h (excluding file write streams due to no current fs)
 ## File System
 While no FS is currently implemented, the plan is to use FUSE or a simple IDE controller.
+# OS
+The operating system is passed all the functions from the kernel, just as would happen in a typical microkernel. The OS shares similar functions to MS-DOS and operates similarly to MS-DOS 6.x-7.x
+### Supported Commands
+- cls: clears screen
+- echo \[arg1\]: prints arg1

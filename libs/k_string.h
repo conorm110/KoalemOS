@@ -22,6 +22,3 @@ unsigned int strspn(const char *s1, const char *s2);
 const char *strstr(const char *X, const char *Y, int m, int n);
 char *strtok(char *s, const char delim);
 size_t strxfrm(char *s1, const char *s2, size_t n);
-
-// Find place for this
-char *remove_first_chars(char s1[], int n);
