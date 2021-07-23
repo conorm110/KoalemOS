@@ -16,6 +16,7 @@ void cls()
 {
     for (int i = 0; i < (SCREEN_WIDTH * SCREEN_HEIGHT * 2); i += 2)
     {
+        move_hw_cursor(0, 0);
         vidptr[i] = ' ';
         vidptr[i + 1] = attr;
     }

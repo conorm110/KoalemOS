@@ -1,18 +1,19 @@
-#include "kernel.h"
 #include "os_main.h"
+#include "kernel.h"
 #include "screen.h"
-#include "interrupts.h"
-#include "keyboard.h"
+#include "terminal_helpers.h"
 #include "k_string.h"
 #include "k_stdio.h"
-#include "os_main.h"
-#include <stdbool.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include "terminal_helpers.h"
 
-void os_main(){
+
+/**
+ * os_main - main os loop
+ * 
+ * all programs run from here. runs
+ * on top of microkernel
+ */
+void os_main()
+{
     puts("KoalemOS\n~/>");
 
     while (1)
@@ -21,7 +22,6 @@ void os_main(){
         if (strcmp(line, "cls"))
         {
             cls();
-            move_hw_cursor(0, 0);
             puts("~/>");
         }
         else if (memcmp((int)(line), (int)("echo"), 4) == 0)
