@@ -63,7 +63,7 @@
 // scanf()
 // sscan()
 char getchar();
-char* gets();
-// putchar()
+char *gets();
+void putchar(unsigned char c);
 void puts(char str[]);
 // perror()

@@ -1,30 +1,22 @@
-;; Looking Glass OS bootstrapper
-;; This will be loaded at 0x100000 and called by GRUB
-
-bits 32               ; Tell NASM that we want 32-bit code
+bits 32
 section .text
-
-; Multiboot header to appease the GRUB gods
 align 4
-dd 0x1BADB002               ; Magic number!
-dd 0x00                     ; Flags
-dd - (0x1BADB002 + 0x00)    ; Checksum, should add up to zero
+dd 0x1BADB002
+dd 0x00
+dd - (0x1BADB002 + 0x00) 
 
-global start          ; Tell NASM to make start visible to linker
+global start
 global read_port
 global write_port
 global load_idt
 global keyboard_interrupt_handler
-extern kmain          ; C kernel entrypoint
+extern kmain
 extern keyboard_handler
 
-start:                  ; This is the main entrypoint to our kernel. The
-                        ; bootloader (GRUB or QEMU) calls this once the
-                        ; kernel has been loaded into memory.
-
-    cli                 ; Disable interrupts completely
-    call kmain          ; Call our C code. Let's get this party started!
-    hlt                 ; Halt the CPU
+start:
+    cli
+    call kmain
+    hlt
 
 ; Read from an IO port
 ; Argument: Port #

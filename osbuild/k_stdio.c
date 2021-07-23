@@ -1,90 +1,126 @@
 #include "k_stdio.h"
 #include "keyboard.h"
 #include "screen.h"
-// printf()
-// sprintf()
-// vprintf()
-// vsprintf()
-// scanf()
-// sscan()
 
-char getchar(){
-    while (1) {
+// TODO: printf()
+// TODO: sprintf()
+// TODO: vprintf()
+// TODO: vsprintf()
+// TODO: scanf()
+// TODO: sscan()
+
+/**
+ * getchar() - get next char
+ * 
+ * Keep checking keyboard input until 
+ * valid character recieved. Return
+ * said character. 
+ */
+char getchar()
+{
+    while (1)
+    {
         char cChar = keyboard_handler();
-        if (cChar != 0) {
+        if (cChar != 0)
+        {
             return cChar;
         }
     }
 }
 
-char* gets(){
+/**
+ * gets - get string
+ * 
+ * Get the next line as string and
+ * return said string.
+ */
+char *gets()
+{
     char *line;
 
-    for (int i = 0; i < 128; i++) {
+    for (int i = 0; i < 128; i++)
+    {
         int charFound = 0;
-        while (charFound == 0) {
+        while (charFound == 0)
+        {
             char cChar = keyboard_handler();
-            if (cChar != 0) {
+            if (cChar != 0)
+            {
                 line[i] = cChar;
-                putch(cChar);
+                putchar(cChar);
                 charFound = 1;
             }
         }
-        if (line[i] == '\n') {
+        if (line[i] == '\n')
+        {
             line[i] = '\0';
             return line;
         }
-    } return line;
+    }
+    return line;
 }
 
-void putch(unsigned char c) {
+
+/**
+ * putchar - prints char
+ * 
+ * Prints char to screen. checks if
+ * end of line or end of screen and
+ * scrolls/enters new line.
+ */
+void putchar(unsigned char c)
+{
     unsigned int location;
 
-    // Backspace
-    if (c == '\b') {
-        if (cursorX != 0) cursorX--;
+    if (c == '\b')
+    {
+        if (cursorX != 0)
+            cursorX--;
     }
-
-    // Carriage return
-    else if (c == '\r') {
+    else if (c == '\r')
+    {
         cursorX = 0;
     }
-
-  // Newline
-    else if (c == '\n') {
+    else if (c == '\n')
+    {
         cursorX = 0;
         cursorY++;
     }
-
-    // Non-special characters
-    else if (c >= ' ') {
+    else if (c >= ' ')
+    {
         location = ((cursorY * SCREEN_WIDTH) + cursorX) * 2;
         vidptr[location] = c;
         vidptr[location + 1] = attr;
         cursorX++;
     }
-
-  // Move cursor to next line if it's beyond the right edge of the screen
-    if (cursorX >= SCREEN_WIDTH) {
+    if (cursorX >= SCREEN_WIDTH)
+    {
         cursorX = 0;
         cursorY++;
     }
-
-  // Scroll the screen up if necessary
-    if (cursorY >= SCREEN_HEIGHT) {
+    if (cursorY >= SCREEN_HEIGHT)
+    {
         cursorY = SCREEN_HEIGHT - 1;
         scroll_up();
     }
-
     move_hw_cursor(cursorX, cursorY);
 }
 
-void puts(char str[]) {
+/**
+ * puts - print string
+ * 
+ * Loops putchar through char[]
+ * untill full char[] is printed.
+ */
+void puts(char str[])
+{
     int i = 0;
 
-    while(str[i] != '\0') {
-        putch(str[i]);
+    while (str[i] != '\0')
+    {
+        putchar(str[i]);
         i++;
     }
 }
-// perror()
+
+// TODO: perror()

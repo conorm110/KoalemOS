@@ -2,19 +2,19 @@
 #include <stddef.h>
 #include "k_string.h"
 
-
-
 /**
  * memchr - find char in str
  * 
  * scan first (length) bytes of (*src_void) 
  * for (c). Returns char (c)
  */
-char *memchr (register int *src_void, int c, size_t length) {
+char *memchr(register int *src_void, int c, size_t length)
+{
     unsigned char *src = (unsigned char *)src_void;
-    while (length-- > 0) {
+    while (length-- > 0)
+    {
         if (*src == c)
-        return src;
+            return src;
         src++;
     }
     return NULL;
@@ -27,12 +27,15 @@ char *memchr (register int *src_void, int c, size_t length) {
  * and (str2). If str1 < str2, return -1, if 
  * str2 < str1, return 1, if str1 = str2, return
  * 0.
- */ 
-int memcmp (int str1, int str2, size_t count) {
-    register const unsigned char *s1 = (const unsigned char*)str1;
-    register const unsigned char *s2 = (const unsigned char*)str2;
-    while (count-- > 0) {
-        if (*s1++ != *s2++) return s1[-1] < s2[-1] ? -1 : 1;
+ */
+int memcmp(int str1, int str2, size_t count)
+{
+    register const unsigned char *s1 = (const unsigned char *)str1;
+    register const unsigned char *s2 = (const unsigned char *)str2;
+    while (count-- > 0)
+    {
+        if (*s1++ != *s2++)
+            return s1[-1] < s2[-1] ? -1 : 1;
     }
     return 0;
 }
@@ -43,11 +46,12 @@ int memcmp (int str1, int str2, size_t count) {
  * Copy the first n bytes of (*src) to 
  * (*dest). Return nothing.
  */
-void memcpy(void *dest, void *src, size_t n) {
-   char *csrc = (char *)src;
-   char *cdest = (char *)dest;
-   for (int i=0; i<n; i++)
-       cdest[i] = csrc[i];
+void memcpy(void *dest, void *src, size_t n)
+{
+    char *csrc = (char *)src;
+    char *cdest = (char *)dest;
+    for (int i = 0; i < n; i++)
+        cdest[i] = csrc[i];
 }
 
 // TODO: MEMMOVE()
@@ -60,16 +64,18 @@ void memcpy(void *dest, void *src, size_t n) {
  * the string pointed to, by the argument 
  * str.
  */
-void  *memset(void *b, int c, int len) {
+void *memset(void *b, int c, int len)
+{
     int i;
     unsigned char *p = b;
     i = 0;
-    while(len > 0) {
+    while (len > 0)
+    {
         *p = c;
         p++;
         len--;
     }
-    return(b);
+    return (b);
 }
 
 /**
@@ -80,9 +86,11 @@ void  *memset(void *b, int c, int len) {
  * destination (redundant to use in 
  * MOST cases however)
  */
-char* strcat(char* destination, const char* source) {
-    char* ptr = destination + strlen(destination);
-    while (*source != '\0') {
+char *strcat(char *destination, const char *source)
+{
+    char *ptr = destination + strlen(destination);
+    while (*source != '\0')
+    {
         *ptr++ = *source++;
     }
     *ptr = '\0';
@@ -95,9 +103,11 @@ char* strcat(char* destination, const char* source) {
  * src to the end of the string pointed 
  * to, by dest up to n characters long
  */
-char* strncat(char* destination, const char* source, size_t num) {
-    char* ptr = destination + strlen(destination);
-    while (*source != '\0' && num--) {
+char *strncat(char *destination, const char *source, size_t num)
+{
+    char *ptr = destination + strlen(destination);
+    while (*source != '\0' && num--)
+    {
         *ptr++ = *source++;
     }
     *ptr = '\0';
@@ -112,12 +122,16 @@ char* strncat(char* destination, const char* source, size_t num) {
  * in the string pointed to, by the 
  * argument str.
  */
-char *strchr (register const char *s, int c) {
-  do { if (*s == c) {
-        return (char*)s;
-      }
-  } while (*s++);
-  return (0);
+char *strchr(register const char *s, int c)
+{
+    do
+    {
+        if (*s == c)
+        {
+            return (char *)s;
+        }
+    } while (*s++);
+    return (0);
 }
 
 /**
@@ -128,11 +142,17 @@ char *strchr (register const char *s, int c) {
  */
 bool strcmp(char s1[], char s2[])
 {
-    if (sizeof(s1)/sizeof(s1[0]) == sizeof(s2)/sizeof(s2[0])) {
-        for (int i = 0; i < sizeof(s1)/sizeof(s1[0]); i++) {
-            if (s1[i] != s2[i]) return false;
-        } return true;
-    } else {
+    if (sizeof(s1) / sizeof(s1[0]) == sizeof(s2) / sizeof(s2[0]))
+    {
+        for (int i = 0; i < sizeof(s1) / sizeof(s1[0]); i++)
+        {
+            if (s1[i] != s2[i])
+                return false;
+        }
+        return true;
+    }
+    else
+    {
         return false;
     }
 }
@@ -142,17 +162,22 @@ bool strcmp(char s1[], char s2[])
  * 
  * Compares at most the first n bytes of 
  * str1 and str2.
- */  
-int strncmp( const char * s1, const char * s2, size_t n ) {
-    while ( n && *s1 && ( *s1 == *s2 ) ) {
+ */
+int strncmp(const char *s1, const char *s2, size_t n)
+{
+    while (n && *s1 && (*s1 == *s2))
+    {
         ++s1;
         ++s2;
         --n;
     }
-    if ( n == 0 ) {
+    if (n == 0)
+    {
         return 0;
-    } else {
-        return ( *(unsigned char *)s1 - *(unsigned char *)s2 );
+    }
+    else
+    {
+        return (*(unsigned char *)s1 - *(unsigned char *)s2);
     }
 }
 
@@ -162,8 +187,9 @@ int strncmp( const char * s1, const char * s2, size_t n ) {
  * Compares string str1 to str2. The result 
  * is dependent on the LC_COLLATE setting 
  * of the location.
- */ 
-int strcoll(const char *s1, const char *s2) {
+ */
+int strcoll(const char *s1, const char *s2)
+{
     char t1[1 + strxfrm(0, s1, 0)];
     strxfrm(t1, s1, sizeof(t1));
     char t2[1 + strxfrm(0, s2, 0)];
@@ -176,11 +202,12 @@ int strcoll(const char *s1, const char *s2) {
  * 
  * Copies the string pointed to, by src
  * to dest.
- */ 
+ */
 char *strcpy(char *destination, char *source)
 {
     char *start = destination;
-    while(*source != '\0') {
+    while (*source != '\0')
+    {
         *destination = *source;
         destination++;
         source++;
@@ -189,13 +216,12 @@ char *strcpy(char *destination, char *source)
     return start;
 }
 
-
 /**
  * strncpy - copy n bytes of str
  * 
  * Copies up to n characters from the 
  * string pointed to, by src to dest.
- */ 
+ */
 
 /**
  * strcspn - overlap of 2 strings
@@ -203,14 +229,15 @@ char *strcpy(char *destination, char *source)
  * Calculates the length of the initial 
  * segment of str1 which consists entirely 
  * of characters not in str2.
- */ 
-size_t strcspn(const char *s1, const char *s2) {
-    size_t ret=0;
-    while(*s1)
-        if(strchr(s2,*s1))
+ */
+size_t strcspn(const char *s1, const char *s2)
+{
+    size_t ret = 0;
+    while (*s1)
+        if (strchr(s2, *s1))
             return ret;
         else
-            s1++,ret++;
+            s1++, ret++;
     return ret;
 }
 
@@ -220,9 +247,8 @@ size_t strcspn(const char *s1, const char *s2) {
  * Searches an internal array for the error 
  * number errnum and returns a pointer 
  * to an error message string.
- */ 
+ */
 // TODO: ADD
-
 
 /**
  * strlen - get length of str
@@ -230,12 +256,14 @@ size_t strcspn(const char *s1, const char *s2) {
  * Computes the length of the string str 
  * to but not including the terminating 
  * null character.
- */ 
-int strlen(const char *str) {
-	register const char *s;
+ */
+int strlen(const char *str)
+{
+    register const char *s;
 
-	for (s = str; *s; ++s);
-	return(s - str);
+    for (s = str; *s; ++s)
+        ;
+    return (s - str);
 }
 
 /**
@@ -244,9 +272,10 @@ int strlen(const char *str) {
  * Finds the first character in the string 
  * str1 that matches any character 
  * specified in str2.
- */ 
-char * STRPBRK (const char *s, const char *accept) {
-    s += strcspn (s, accept);
+ */
+char *STRPBRK(const char *s, const char *accept)
+{
+    s += strcspn(s, accept);
     return *s ? (char *)s : NULL;
 }
 
@@ -256,18 +285,20 @@ char * STRPBRK (const char *s, const char *accept) {
  * Searches for the last occurrence of the 
  * character c (an unsigned char) in the 
  * string pointed to by the argument str.
- */ 
-char * strrchr(const char *s, int c) {
+ */
+char *strrchr(const char *s, int c)
+{
     const char *found, *p;
-    c = (unsigned char) c;
+    c = (unsigned char)c;
     if (c == '\0')
-        return strchr (s, '\0');
+        return strchr(s, '\0');
     found = NULL;
-    while ((p = strchr (s, c)) != NULL) {
+    while ((p = strchr(s, c)) != NULL)
+    {
         found = p;
         s = p + 1;
-        }
-    return (char *) found;
+    }
+    return (char *)found;
 }
 
 /**
@@ -276,13 +307,14 @@ char * strrchr(const char *s, int c) {
  * Calculates the length of the initial 
  * segment of str1 which consists entirely
  * of characters in str2.
- */ 
-unsigned int strspn(const char *s1, const char *s2) {
-    unsigned int len =0;
+ */
+unsigned int strspn(const char *s1, const char *s2)
+{
+    unsigned int len = 0;
     //return 0 if any one is NULL
-    if((s1 == NULL) || (s2 == NULL))
+    if ((s1 == NULL) || (s2 == NULL))
         return len;
-    while(*s1 && strchr(s2,*s1++))
+    while (*s1 && strchr(s2, *s1++))
     {
         len++;
     }
@@ -296,34 +328,47 @@ unsigned int strspn(const char *s1, const char *s2) {
  * string needle (not including the 
  * terminating null character) which appears
  * in the string haystack.
- */ 
-const char* strstr(const char* X, const char* Y, int m, int n) {
-    if (*Y == '\0' || n == 0) {
+ */
+const char *strstr(const char *X, const char *Y, int m, int n)
+{
+    if (*Y == '\0' || n == 0)
+    {
         return X;
-    } if (*X == '\0' || n > m) {
+    }
+    if (*X == '\0' || n > m)
+    {
         return NULL;
     }
     int next[n + 1];
-    for (int i = 0; i < n + 1; i++) {
+    for (int i = 0; i < n + 1; i++)
+    {
         next[i] = 0;
     }
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < n; i++)
+    {
         int j = next[i + 1];
-        while (j > 0 && Y[j] != Y[i]) {
+        while (j > 0 && Y[j] != Y[i])
+        {
             j = next[j];
         }
-        if (j > 0 || Y[j] == Y[i]) {
+        if (j > 0 || Y[j] == Y[i])
+        {
             next[i + 1] = j + 1;
         }
     }
-    for (int i = 0, j = 0; i < m; i++) {
-        if (*(X + i) == *(Y + j)) {
-            if (++j == n) {
+    for (int i = 0, j = 0; i < m; i++)
+    {
+        if (*(X + i) == *(Y + j))
+        {
+            if (++j == n)
+            {
                 return (X + i - j + 1);
             }
-        } else if (j > 0) {
+        }
+        else if (j > 0)
+        {
             j = next[j];
-            i--;  
+            i--;
         }
     }
     return NULL;
@@ -334,20 +379,22 @@ const char* strstr(const char* X, const char* Y, int m, int n) {
  * 
  * Breaks string str into a series of tokens 
  * separated by delim.
- */ 
-char * strtok(char *s, const char delim) {
+ */
+char *strtok(char *s, const char delim)
+{
     static char *lasts;
     register int ch;
     if (s == 0)
-	s = lasts;
-    do {
-	if ((ch = *s++) == '\0')
-	    return 0;
+        s = lasts;
+    do
+    {
+        if ((ch = *s++) == '\0')
+            return 0;
     } while (strchr(delim, ch));
     --s;
     lasts = s + strcspn(s, delim);
     if (*lasts != 0)
-	*lasts++ = 0;
+        *lasts++ = 0;
     return s;
 }
 
@@ -357,20 +404,18 @@ char * strtok(char *s, const char delim) {
  * Transforms the first n characters of the
  * string src into current locale and places
  * them in the string dest.
- */ 
-size_t strxfrm(char *s1, const char *s2, size_t n) {
-	size_t len = strlen(s2) + 1;
-	if (len < n)
-		n = len;
-	memcpy(s1, s2, n);
-	return len;
+ */
+size_t strxfrm(char *s1, const char *s2, size_t n)
+{
+    size_t len = strlen(s2) + 1;
+    if (len < n)
+        n = len;
+    memcpy(s1, s2, n);
+    return len;
 }
 
-
-
-
-
-char *remove_first_chars(char s1[], int n) {
-    char* s2 = s1 + n;
+char *remove_first_chars(char s1[], int n)
+{
+    char *s2 = s1 + n;
     return s2;
 }
