@@ -1,2 +1,1 @@
 void kmain();
-void shutdown();

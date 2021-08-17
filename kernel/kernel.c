@@ -16,16 +16,3 @@ void kmain()
     init_idt();
     os_main();
 }
-
-/**
- * shutdown - terminate all tasks
- * 
- * clears vram, disables cursor, and
- * stops all current tasks
- */
-void shutdown()
-{
-    cls();
-    disable_cursor();
-    halt_program();
-}
