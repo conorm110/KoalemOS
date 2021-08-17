@@ -1,6 +1,9 @@
-/*  Thanks to this hoe, u deserve to be sucked off
-    http://www.osdever.net/bkerndev/Docs/keyboard.htm
-*/
+/**
+ * Copyright (c) 2021, Conor Mika
+ * All rights reserved.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. 
+ */
 
 /**
  * keyboard_map - scancode to asckii
