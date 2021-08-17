@@ -29,3 +29,7 @@ A few C libraries have been rewritten for KoalemOS
 
 - stdio.h (non file writing functions)
 - string.h (fully stable & complete)
+
+<sub><sup>
+Copyright (c) 2021, Conor Mika
+All rights reserved.</sup></sub>
