@@ -9,8 +9,9 @@
 
 int os_main() {
     // Only for debugging purposes
-    puts("KoalemOS\n");
+    puts("KoalemOS v0.0.1\n");
     while(1) {
+        puts("> ");
         char *line = gets();
     }
     return 0;
