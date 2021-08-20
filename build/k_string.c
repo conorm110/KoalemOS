@@ -346,7 +346,7 @@ char *strtok(char *s, const char delim)
  * string src into current locale and places
  * them in the string dest.
  */
-size_t strxfrm(char *s1, const char *s2, size_t n)
+size_t strxfrm(char *s1, char *s2, size_t n)
 {
     size_t len = strlen(s2) + 1;
     if (len < n)

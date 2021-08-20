@@ -28,4 +28,4 @@ char *strrchr(const char *s, int c);
 unsigned int strspn(const char *s1, const char *s2);
 const char *strstr(const char *X, const char *Y, int m, int n);
 char *strtok(char *s, const char delim);
-size_t strxfrm(char *s1, const char *s2, size_t n);
+size_t strxfrm(char *s1, char *s2, size_t n);
