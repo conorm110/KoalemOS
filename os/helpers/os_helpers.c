@@ -14,8 +14,11 @@
  * swaps pointers to two numbers
  * effectivly swapping their memory locaitons
  */
-void swap(char *x, char *y) {
-    char t = *x; *x = *y; *y = t;
+void swap(char *x, char *y)
+{
+    char t = *x;
+    *x = *y;
+    *y = t;
 }
 
 /**
@@ -27,26 +30,26 @@ void swap(char *x, char *y) {
 void reverse(char str[], int length)
 {
     int start = 0;
-    int end = length -1;
+    int end = length - 1;
     while (start < end)
     {
-        swap(*(str+start), *(str+end));
+        swap(*(str + start), *(str + end));
         start++;
         end--;
     }
 }
-  
+
 /**
  * itoa() - int to string
  * 
  * converts int to string and
  * adjusts for the ints base. 
  */
-char* itoa(int num, char* str, int base)
+char *itoa(int num, char *str, int base)
 {
     int i = 0;
     bool isNegative = false;
-  
+
     if (num == 0)
     {
         str[i++] = '0';
@@ -58,20 +61,20 @@ char* itoa(int num, char* str, int base)
         isNegative = true;
         num = -num;
     }
-  
+
     while (num != 0)
     {
         int rem = num % base;
-        str[i++] = (rem > 9)? (rem-10) + 'a' : rem + '0';
-        num = num/base;
+        str[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+        num = num / base;
     }
-  
+
     if (isNegative)
         str[i++] = '-';
-  
-    str[i] = '\0'; 
-  
+
+    str[i] = '\0';
+
     reverse(str, i);
-  
+
     return str;
 }

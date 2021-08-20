@@ -5,13 +5,11 @@
  * LICENSE file in the root directory of this source tree. 
  */
 
-
 #include "k_stdio.h"
 #include "os_functions.h"
 #include "k_string.h"
 #include "os_helpers.h"
 #include "fs.h"
-
 
 /**
  * os_main() - main os function
@@ -20,7 +18,8 @@
  * os level programs now return
  * here.
  */
-int os_main() {
+int os_main()
+{
     FIS_REG_H2D fis = fs_init();
     debug_fis(fis);
 

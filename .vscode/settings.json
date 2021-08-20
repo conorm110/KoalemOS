@@ -3,6 +3,7 @@
         "ahci.h": "c",
         "k_string.h": "c",
         "os_functions.h": "c",
-        "k_stdio.h": "c"
+        "k_stdio.h": "c",
+        "screen.h": "c"
     }
 }

@@ -8,8 +8,8 @@
 #include "kernel.h"
 #include "screen.h"
 #include "interrupts.h"
-
 #include "os_main.h"
+
 /**
  * kmain - entry point
  * 

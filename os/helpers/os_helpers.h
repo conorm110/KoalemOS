@@ -5,6 +5,6 @@
  * LICENSE file in the root directory of this source tree. 
  */
 
-char* itoa(int num, char* str, int base);
+char *itoa(int num, char *str, int base);
 void reverse(char str[], int length);
 void swap(char *x, char *y);

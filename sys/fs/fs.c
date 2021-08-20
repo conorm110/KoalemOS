@@ -17,13 +17,14 @@
  * Issues an ATA Identify command to the
  * device. Constructs FIS.
  */
-FIS_REG_H2D fs_init() {
+FIS_REG_H2D fs_init()
+{
     FIS_REG_H2D fis;
     memset(&fis, 0, sizeof(FIS_REG_H2D));
     fis.fis_type = FIS_TYPE_REG_H2D;
-    fis.command = 0xEC;	// 0xEC
-    fis.device = 0;			// Master device
-    fis.c = 1;				// Write command register
+    fis.command = 0xEC; // 0xEC
+    fis.device = 0;     // Master device
+    fis.c = 1;          // Write command register
     return fis;
 }
 
@@ -33,7 +34,8 @@ FIS_REG_H2D fs_init() {
  * Prints out all registers in FIS
  * generated from fs_init()
  */
-void debug_fis(FIS_REG_H2D fis) {
+void debug_fis(FIS_REG_H2D fis)
+{
     puts("ATA FIS IDENTITY\n");
     char *fis_type;
     itoa(fis.fis_type, fis_type, 16);
