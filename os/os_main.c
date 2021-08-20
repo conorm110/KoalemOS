@@ -20,8 +20,9 @@
  */
 int os_main()
 {
-    FIS_REG_H2D fis = fs_init();
-    debug_fis(fis);
+    flp_detect();
+    //FIS_REG_H2D fis = fs_init();
+    //debug_fis(fis);
 
     puts("KoalemOS v0.0.1\n");
 

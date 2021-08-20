@@ -6,6 +6,7 @@
  */
 
 #include "ahci.h"
+#include "flp.h"
 
 FIS_REG_H2D fs_init();
 void debug_fis(FIS_REG_H2D fis);
