@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "ahci.h": "c",
+        "k_string.h": "c",
+        "os_functions.h": "c",
+        "k_stdio.h": "c"
+    }
+}

@@ -22,6 +22,5 @@ void kmain()
     init_video();
     init_idt();
 
-
     os_main();
 }

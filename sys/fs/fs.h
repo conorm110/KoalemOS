@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree. 
  */
 
-extern void write_port(int port, int value);
-extern int read_port(int port);
+#include "ahci.h"
 
+FIS_REG_H2D fs_init();
+void debug_fis(FIS_REG_H2D fis);
