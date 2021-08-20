@@ -147,7 +147,7 @@ char *strchr(register const char *s, int c)
  * bool true if same or bool false if 
  * different
  */
-bool strcmp(char s1[], char s2[])
+bool strcmp(char* s1, char* s2)
 {
     if (sizeof(s1) / sizeof(s1[0]) == sizeof(s2) / sizeof(s2[0]))
     {
@@ -331,9 +331,9 @@ char *strtok(char *s, const char delim)
     {
         if ((ch = *s++) == '\0')
             return 0;
-    } while (strchr(delim, ch));
+    } while (strchr(&delim, ch));
     --s;
-    lasts = s + strcspn(s, delim);
+    lasts = s + strcspn(s, &delim);
     if (*lasts != 0)
         *lasts++ = 0;
     return s;
@@ -346,7 +346,7 @@ char *strtok(char *s, const char delim)
  * string src into current locale and places
  * them in the string dest.
  */
-size_t strxfrm(char *s1, const char *s2, size_t n)
+size_t strxfrm(char *s1, char *s2, size_t n)
 {
     size_t len = strlen(s2) + 1;
     if (len < n)
