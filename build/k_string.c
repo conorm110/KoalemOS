@@ -147,7 +147,7 @@ char *strchr(register const char *s, int c)
  * bool true if same or bool false if 
  * different
  */
-bool strcmp(char s1[], char s2[])
+bool strcmp(char* s1, char* s2)
 {
     if (sizeof(s1) / sizeof(s1[0]) == sizeof(s2) / sizeof(s2[0]))
     {
