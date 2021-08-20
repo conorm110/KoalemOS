@@ -331,9 +331,9 @@ char *strtok(char *s, const char delim)
     {
         if ((ch = *s++) == '\0')
             return 0;
-    } while (strchr(delim, ch));
+    } while (strchr(&delim, ch));
     --s;
-    lasts = s + strcspn(s, delim);
+    lasts = s + strcspn(s, &delim);
     if (*lasts != 0)
         *lasts++ = 0;
     return s;
