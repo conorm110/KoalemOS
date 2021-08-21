@@ -21,7 +21,7 @@ enum floppy_commands {
    CMD_SEEK = 15,              // SEEK
 };
 
-static const char * drive_types[9] = {
+static char * drive_types[9] = {
     "none",
     "none",
     "360kB 5.25\"",
