@@ -36,6 +36,12 @@ void flp_detect() {
     puts("\n\n");
 }
 
+/**
+ * floppy_write_cmd() - write cmd
+ * 
+ * sends write cmd to floppy disk
+ * TIMING KNOWN BAD AND BUGGY
+ */
 void floppy_write_cmd(int base, char cmd) {
     int i; // do timeout, 60 seconds
     for(i = 0; i < 600; i++) {
@@ -47,6 +53,12 @@ void floppy_write_cmd(int base, char cmd) {
     puts("floppy_write_cmd: timeout");   
 }
 
+/**
+ * floppy_read_data() - reads floppy data
+ * 
+ * reads data from floppy disk
+ * TIMING KNOWN BAD
+ */
 unsigned char floppy_read_data(int base) {
 
     int i; // do timeout, 60 seconds
