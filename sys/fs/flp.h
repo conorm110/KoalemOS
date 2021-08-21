@@ -38,3 +38,5 @@ static char * drive_types[10] = {
 };
 
 void flp_detect();
+void floppy_write_cmd(int base, char cmd);
+unsigned char floppy_read_data(int base);

@@ -17,6 +17,7 @@ global write_port
 global load_idt
 global keyboard_interrupt_handler
 global halt_program
+global delay_cycle
 extern kmain
 extern keyboard_handler
 
@@ -61,3 +62,7 @@ keyboard_interrupt_handler:
 
 halt_program:
     hlt
+
+delay_cycle:
+    nop
+    ret

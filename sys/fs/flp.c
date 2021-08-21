@@ -8,6 +8,7 @@
 #include "flp.h"
 #include "io.h"
 #include "k_stdio.h"
+#include "k_time.h"
 
 /**
  * flp_detect() - detect floppy drives
@@ -33,6 +34,28 @@ void flp_detect() {
         puts("No FLP drive @ index=1");
     }
     puts("\n\n");
-    
+}
 
+void floppy_write_cmd(int base, char cmd) {
+    int i; // do timeout, 60 seconds
+    for(i = 0; i < 600; i++) {
+        delay(30000000);
+        if(0x80 & read_port(base+FLOPPY_MSR)) {
+            return (void) write_port(base+FLOPPY_FIFO, cmd);
+        }
+    }
+    puts("floppy_write_cmd: timeout");   
+}
+
+unsigned char floppy_read_data(int base) {
+
+    int i; // do timeout, 60 seconds
+    for(i = 0; i < 600; i++) {
+        delay(30000000);
+        if(0x80 & read_port(base+FLOPPY_MSR)) {
+            return read_port(base+FLOPPY_FIFO);
+        }
+    }
+    puts("floppy_read_data: timeout");
+    return 0; // not reached
 }

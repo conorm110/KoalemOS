@@ -10,6 +10,7 @@
 #include "k_string.h"
 #include "os_helpers.h"
 #include "fs.h"
+#include "k_time.h"
 
 /**
  * os_main() - main os function
@@ -21,12 +22,13 @@
 int os_main()
 {
     flp_detect();
-    //FIS_REG_H2D fis = fs_init();
+    FIS_REG_H2D fis = fs_init();
     //debug_fis(fis);
 
     puts("KoalemOS v0.0.1\n");
 
     puts("\n\nPRESS ENTER TO TERMINATE OS");
+    
     char *line = gets();
     terminate_os();
     return 0;
