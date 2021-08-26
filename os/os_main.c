@@ -25,7 +25,7 @@ int os_main()
     FIS_REG_H2D fis = fs_init();
     //debug_fis(fis);
 
-    puts("KoalemOS v0.0.2\n");
+    puts("KoalemOS v0.0.3\n");
     puts("\n\nPRESS ENTER TO TERMINATE OS");
     char *line = gets();
     terminate_os();

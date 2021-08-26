@@ -5,22 +5,24 @@ import os.path
 from os import path
 
 def clean():
-    if path.exists("sys/"):
-        shutil.rmtree("sys/")
+    if path.exists("$/"):
+        shutil.rmtree("$/")
         return True
     return False
 
 def fs_setup():
-    os.mkdir("sys/")
-    os.mkdir("sys/kernel/")
-    os.mkdir("sys/dev/")
-    shutil.move("../build/build/kernel.elf", "sys/kernel/kernel.elf")
+    os.mkdir("$/")
+    os.mkdir("$/kernel/")
+    os.mkdir("$/devices/")
+    os.mkdir("$/lib/")
+    move_lib()
+    shutil.move("../build/build/kernel.elf", "$/kernel/kernel.elf")
     return
 
 def flp_setup(cmd):
     if (input("Floppy Drive y/[n]: ") == "y"): 
-        os.system("qemu-img create sys/dev/flp.img " + input("FLP Storage: "))
-        cmd += "-drive file=sys/dev/flp.img,index=1,if=floppy,format=raw"
+        os.system("qemu-img create $/devices/flp.img " + input("FLP Storage: "))
+        cmd += "-drive file=$/devices/flp.img,index=1,if=floppy,format=raw"
     return cmd
 
 def build_kernel():
@@ -33,8 +35,12 @@ def build_kernel():
     else:
         return False
 
+def move_lib():
+    os.system("cp ../lib/* $/lib/")
+    return
+
 def main():
-    cmd = "qemu-system-x86_64 -kernel sys/kernel/kernel.elf " # QEMU Base Start Command
+    cmd = "qemu-system-x86_64 -kernel $/kernel/kernel.elf " # QEMU Base Start Command
 
     if clean(): 
         if build_kernel():
@@ -45,7 +51,7 @@ def main():
             print("Error: Kernel Could Not Be Created")
             exit()
     else:
-        print("Error: Could not remove sys/")
+        print("Error: Could not remove $/")
         exit()
 
 
