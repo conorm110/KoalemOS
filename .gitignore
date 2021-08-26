@@ -2,3 +2,5 @@ build/*
 !build/makefile
 !build/run.bat
 !build/link.ld
+emulation/run.out
+emulation/win
