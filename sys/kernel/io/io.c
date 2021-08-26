@@ -5,5 +5,4 @@
  * LICENSE file in the root directory of this source tree. 
  */
 
-extern void write_port(int port, int value);
-extern int read_port(int port);
+#include "io.h"

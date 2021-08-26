@@ -6,13 +6,28 @@
  */
 
 #include "k_stdio.h"
+#include "os_functions.h"
+#include "k_string.h"
+#include "os_helpers.h"
+#include "fs.h"
+#include "k_time.h"
 
-int os_main() {
-    // Only for debugging purposes
-    puts("KoalemOS v0.0.1\n");
-    while(1) {
-        puts("> ");
-        char *line = gets();
-    }
+/**
+ * os_main() - main os function
+ * 
+ * called from kernel, all
+ * os level programs now return
+ * here.
+ */
+int os_main()
+{
+    flp_detect();
+    FIS_REG_H2D fis = fs_init();
+    //debug_fis(fis);
+
+    puts("KoalemOS v0.0.2\n");
+    puts("\n\nPRESS ENTER TO TERMINATE OS");
+    char *line = gets();
+    terminate_os();
     return 0;
 }

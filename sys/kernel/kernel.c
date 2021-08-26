@@ -8,8 +8,8 @@
 #include "kernel.h"
 #include "screen.h"
 #include "interrupts.h"
-
 #include "os_main.h"
+
 /**
  * kmain - entry point
  * 
@@ -21,7 +21,6 @@ void kmain()
 {
     init_video();
     init_idt();
-
 
     os_main();
 }
