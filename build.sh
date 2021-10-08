@@ -1,3 +1,4 @@
+
 empty_files=$(find . -type f -regex ".*\.c")
 for file in "${empty_files[@]}"
 do
