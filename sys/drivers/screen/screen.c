@@ -86,5 +86,5 @@ void init_video()
 void disable_cursor()
 {
     write_port(0x3D4, 0x0A);
-	write_port(0x3D5, 0x20);
+    write_port(0x3D5, 0x20);
 }
