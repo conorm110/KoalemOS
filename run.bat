@@ -1,1 +1,0 @@
-cd emulation && py run.py && cd ..
