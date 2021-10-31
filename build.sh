@@ -23,4 +23,3 @@ cp link.ld build/
 
 cd build
 make
-make run

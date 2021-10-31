@@ -1,29 +1,9 @@
 # KoalemOS
-## Build and Run
-*NOTE: KoalemOS is built and developed on a Windows PC with WSL*
-**CMD**
-```
-run
-```
-You will be prompted through the emulation configuration.
-## Kernel
-KoalemOS is built on a custom kernel for x86-32. It is Unix-like.
-### Driver Support
-- Keyboard (US)
-- Basic VGA Controller (VESA standard)
-- Simple FLP
-### Kernel Support
-- x86-32
-- AMD 64 (runs in 32 bit mode)
-- IDT (Interrupt Descriptor Table)
-- VESA VGA (Most graphics controllers support this since ~2004)
-## OS
-The development of KoalemOS itself is halted while the kernel is being developed. 
-### Library Support
-A few C libraries have been rewritten for KoalemOS
+KoalemOS is a os built on a custom kernel for i386 computers. It is not designed for normal everyday use; just for educational purposes.
 
-- stdio.h (non file writing functions)
-- string.h (fully stable & complete)
+I would love for this project to someday be a fully functional OS and kernel, but for now I'm just messing around with it.
+
+**Information on how to use, build, and run this project is in the Documentation directory.**
 
 <sub><sup>Copyright (c) 2021, Conor Mika
 All rights reserved.</sup></sub>

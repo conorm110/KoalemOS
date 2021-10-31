@@ -6,7 +6,8 @@ BUILDDIR=build/
 CSOURCES=$(wildcard *.c)
 COBJS=$(CSOURCES:.c=.o)
 COBJSFULL=$(addprefix $(BUILDDIR), $(CSOURCES:.c=.o))
-
+IDEDRIVE = -device piix3-ide,id=ide -drive id=disk,file=image.img,format=raw,if=none -device ide-hd,drive=disk,bus=ide.0
+ATADRIVE = -drive id=disk,file=image.img,if=none -device ahci,id=ahci -device ide-hd,drive=disk,bus=ahci.0
 all: build_dir $(KERNEL)
 
 build_dir:
@@ -24,6 +25,13 @@ $(KERNEL): kernel_asm.o $(COBJS)
 clean:
 	rm -rf build/
 
-run:
-	qemu-img create flp.img 360k
-	qemu-system-i386 -kernel $(BUILDDIR)$(KERNEL) -drive file=flp.img,index=1,if=floppy,format=raw
+run_no_disk:
+	qemu-system-i386 -kernel $(BUILDDIR)$(KERNEL)
+
+run_ide:
+	qemu-img create image.img 10M
+	qemu-system-i386 -kernel $(BUILDDIR)$(KERNEL) $(IDEDRIVE)
+
+run_sata:
+	qemu-img create image.img 10M
+	qemu-system-i386 -kernel $(BUILDDIR)$(KERNEL) $(ATADRIVE)

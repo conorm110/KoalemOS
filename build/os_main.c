@@ -6,11 +6,13 @@
  */
 
 #include "k_stdio.h"
-#include "os_functions.h"
 #include "k_string.h"
-#include "os_helpers.h"
 #include "k_time.h"
-#include "flp.h"
+
+#include "os_functions.h"
+#include "os_helpers.h"
+
+#include "pci.h"
 
 /**
  * os_main() - main os function
@@ -21,11 +23,32 @@
  */
 int os_main()
 {
-    flp_detect();
 
-    puts("KoalemOS v0.0.4\n");
-    puts("\n\nPRESS ENTER TO TERMINATE OS");
-    char *line = gets();
+    puts("KoalemOS v0.1.0\n");
+
+    while (true)
+    {
+        puts("> ");
+        char *line = gets();
+        if(strlen(line) == 7 && strcmp(line, "pcilist")){
+            puts("\n");
+            pci_test();
+            puts("\n");
+        } else if (strcmp(line, "clear")) {
+            clear();
+        } else if (strcmp(line, "help")) {
+            puts("\nclear - clear the screen\npcilist - list all available PCI devices\ngetata - scans and initilizes all accesable ata drives\ngetide - scansand initilizes all accesable ide drives\necho [arg] - echos argument str to screen\n");
+        } else if(strlen(line) > 6 && !strncmp(line, "echo", 3)) {
+            line+=5;
+            puts(line);
+            puts("\n");
+        } else {
+            puts("\nCommand '");
+            puts(line);
+            puts("' not found.\n");
+        }
+    }
+    
     terminate_os();
     return 0;
 }
