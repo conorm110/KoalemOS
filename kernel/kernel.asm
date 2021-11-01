@@ -27,7 +27,7 @@ start:
     hlt            ; if somehow kernel finishes execution, halt CPU
 
 ; Include all other ASM files
-%include "io.asm"
+%include "ports.asm"
 %include "interrupts.asm"
 %include "keyboard.asm"
 %include "k_time.asm"

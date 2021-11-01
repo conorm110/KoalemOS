@@ -6,7 +6,7 @@
  */
 
 #include "screen.h"
-#include "io.h"
+#include "ports.h"
 
 int cursorX = 0;
 int cursorY = 0;

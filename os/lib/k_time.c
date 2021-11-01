@@ -6,7 +6,7 @@
  */
 
 #include "k_time.h"
-#include "io.h"
+#include "ports.h"
 #include "k_stdio.h"
 /**
  * delay() - delays execution

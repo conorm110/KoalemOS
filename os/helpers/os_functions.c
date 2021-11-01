@@ -6,7 +6,7 @@
  */
 
 #include "screen.h"
-#include "io.h"
+#include "ports.h"
 #include "os_functions.h"
 
 /**

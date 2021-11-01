@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree. 
  */
 
-#include <stdint.h>
 #include "ports.h"
+#include <stdint.h>
 
 unsigned char port_byte_in (unsigned short port) {
     unsigned char result;
