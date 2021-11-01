@@ -24,7 +24,7 @@
 int os_main()
 {
 
-    puts("KoalemOS v0.1.0\n");
+    puts("KoalemOS v0.1.1\n");
 
     while (true)
     {
