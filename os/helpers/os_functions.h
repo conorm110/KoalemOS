@@ -5,5 +5,9 @@
  * LICENSE file in the root directory of this source tree. 
  */
 
-void terminate_os();
+void help();
+void pcilist();
+void termos();
 void clear();
+void echo(char *line);
+void _cmd_not_found(char *line);

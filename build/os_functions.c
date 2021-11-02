@@ -8,6 +8,8 @@
 #include "screen.h"
 #include "ports.h"
 #include "os_functions.h"
+#include "k_stdio.h"
+#include "pci.h"
 
 /**
  * halt_program() - hlt
@@ -17,7 +19,7 @@
  * hlt command. use for safe
  * termination
  */
-extern void halt_program();
+extern void haltprogram();
 
 /**
  * terminate_os() - terminate os
@@ -27,11 +29,11 @@ extern void halt_program();
  * at end of os_main or other shutdown
  * routes.
  */
-void terminate_os() {
+void termos() {
     write_port(0x3D4, 0x0A);
 	write_port(0x3D5, 0x20);
     cls();
-    halt_program();
+    haltprogram();
 }
 
 /**
@@ -40,11 +42,38 @@ void terminate_os() {
  * Slightly better memory efficiency to
  * call this function then include
  * screen.h and call cls nativly. 
- * 
- * TODO: clear screen in all graphics modes
- * and have efficient clear
  */
 void clear() {
     cls();
     return;
+}
+
+
+void help() {
+    puts("clear - clear the screen");
+    puts("\npcilist - list all available PCI devices");
+    puts("\ngetata - scans and initilizes all accesable ata drives");
+    puts("\ngetide - scansand initilizes all accesable ide drives");
+    puts("\necho [arg] - echos argument str to screen \n");
+    return;
+}
+
+void pcilist() {
+    puts("\n");
+    pci_test();
+    puts("\n");
+    return;
+}
+
+void echo(char *line) {
+    line+=5;
+    puts(line);
+    puts("\n");
+    return;
+}
+
+void cmd_not_found(char *line) {
+    puts("Command '");
+    puts(line);
+    puts("' not found.\n");
 }

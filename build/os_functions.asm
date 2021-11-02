@@ -4,11 +4,11 @@
 ; LICENSE file in the root directory of this source tree. 
 
 ; Linking
-global halt_program
+global haltprogram
 
-; halt_program() - hlt
+; haltprogram() - hlt
 ;
 ; executes hlt instruction
 ; no return, only use for sudo
 ; shutdown
-halt_program: hlt
+haltprogram: hlt

@@ -24,31 +24,27 @@
 int os_main()
 {
 
-    puts("KoalemOS v0.1.0\n");
+    puts("KoalemOS v0.1.1\n");
 
     while (true)
     {
         puts("> ");
         char *line = gets();
         if(strlen(line) == 7 && strcmp(line, "pcilist")){
-            puts("\n");
-            pci_test();
-            puts("\n");
+            pcilist();
         } else if (strcmp(line, "clear")) {
             clear();
         } else if (strcmp(line, "help")) {
-            puts("\nclear - clear the screen\npcilist - list all available PCI devices\ngetata - scans and initilizes all accesable ata drives\ngetide - scansand initilizes all accesable ide drives\necho [arg] - echos argument str to screen\n");
+            help();
         } else if(strlen(line) > 6 && !strncmp(line, "echo", 3)) {
-            line+=5;
-            puts(line);
-            puts("\n");
+            echo(line);
+        } else if (strlen(line) > 5 && !strncmp(line, "termos", 5)) {
+            termos();
         } else {
-            puts("\nCommand '");
-            puts(line);
-            puts("' not found.\n");
+            cmd_not_found(line);
         }
     }
     
-    terminate_os();
+    termos();
     return 0;
 }
