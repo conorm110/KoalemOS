@@ -1,4 +1,3 @@
-# KoalemOS: Ports (ports.h)
 ## Function Overview
 <hr>
 
