@@ -1,4 +1,3 @@
-# KoalemOS: CLI
 NOTE: All CLI actions for KoalemOS can be found in os/helpers/os_functions.[c][h][asm]
 
 ## Command List & Function List
