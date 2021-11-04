@@ -1,4 +1,3 @@
-# KoalemOS: Building and Running
 ## Building
 The system for building and virtuilizing KoalemOS is very janky but it works *relativly* reliably.
 
