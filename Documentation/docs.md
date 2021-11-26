@@ -4,4 +4,4 @@
 - [PCI](https://conorm110.github.io/KoalemOS/Documentation/pci)
 - [Ports](https://conorm110.github.io/KoalemOS/Documentation/ports)
 - [Standard Libraries](https://conorm110.github.io/KoalemOS/Documentation/stdlib)
-
+- [GRUB Boot](https://conorm110.github.io/KoalemOS/Documentation/grub)
