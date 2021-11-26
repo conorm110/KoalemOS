@@ -24,7 +24,7 @@
 int os_main()
 {
 
-    puts("KoalemOS v0.1.1\n");
+    puts("KoalemOS v0.1.3\n");
 
     while (true)
     {
@@ -41,7 +41,7 @@ int os_main()
         } else if (strlen(line) > 5 && !strncmp(line, "termos", 5)) {
             termos();
         } else {
-            cmd_not_found(line);
+            _cmd_not_found(line);
         }
     }
     

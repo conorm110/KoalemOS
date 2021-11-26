@@ -12,10 +12,10 @@
 #include "pci.h"
 
 /**
- * halt_program() - hlt
+ * haltprogram() - hlt
  * 
- * extern to kernal.asm
- * halt_program which executes
+ * extern to kernel.asm
+ * haltprogram which executes
  * hlt command. use for safe
  * termination
  */
@@ -48,16 +48,28 @@ void clear() {
     return;
 }
 
-
+/**
+ * help - output help 
+ * 
+ * when called, outputs help menu with all 
+ * terminal commands
+ */
 void help() {
-    puts("clear - clear the screen");
-    puts("\npcilist - list all available PCI devices");
-    puts("\ngetata - scans and initilizes all accesable ata drives");
-    puts("\ngetide - scansand initilizes all accesable ide drives");
-    puts("\necho [arg] - echos argument str to screen \n");
+    
+    puts("pcilist - list all available PCI devices\n");
+    puts("clear - clear the screen\n");
+    puts("help - lists all os commands\n");
+    puts("echo [arg] - echos argument str to screen\n");
+    puts("termos - terminates os\n");
     return;
 }
 
+/**
+ * pcilist - list pci connections
+ * 
+ * tests pci and lists out connections
+ * and their bus data
+ */
 void pcilist() {
     puts("\n");
     pci_test();
@@ -65,6 +77,13 @@ void pcilist() {
     return;
 }
 
+/**
+ * echo - echos user
+ * 
+ * echos string following user 
+ * command, takes char *line as a 
+ * param
+ */
 void echo(char *line) {
     line+=5;
     puts(line);
@@ -72,7 +91,13 @@ void echo(char *line) {
     return;
 }
 
-void cmd_not_found(char *line) {
+/**
+ * _cmd_not_found - output warning
+ * 
+ * outputs warning partaining to not found 
+ * terminal command
+ */
+void _cmd_not_found(char *line) {
     puts("Command '");
     puts(line);
     puts("' not found.\n");

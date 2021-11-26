@@ -10,4 +10,4 @@ void pcilist();
 void termos();
 void clear();
 void echo(char *line);
-void cmd_not_found(char *line);
+void _cmd_not_found(char *line);

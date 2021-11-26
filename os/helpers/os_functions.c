@@ -55,11 +55,12 @@ void clear() {
  * terminal commands
  */
 void help() {
-    puts("clear - clear the screen");
-    puts("\npcilist - list all available PCI devices");
-    puts("\ngetata - scans and initilizes all accesable ata drives");
-    puts("\ngetide - scansand initilizes all accesable ide drives");
-    puts("\necho [arg] - echos argument str to screen \n");
+    
+    puts("pcilist - list all available PCI devices\n");
+    puts("clear - clear the screen\n");
+    puts("help - lists all os commands\n");
+    puts("echo [arg] - echos argument str to screen\n");
+    puts("termos - terminates os\n");
     return;
 }
 
