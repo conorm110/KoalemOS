@@ -25,13 +25,5 @@ $(KERNEL): kernel_asm.o $(COBJS)
 clean:
 	rm -rf build/
 
-run_no_disk:
-	qemu-system-i386 -kernel $(BUILDDIR)$(KERNEL)
-
-run_ide:
+run:
 	qemu-img create image.img 10M
-	qemu-system-i386 -kernel $(BUILDDIR)$(KERNEL) $(IDEDRIVE)
-
-run_sata:
-	qemu-img create image.img 10M
-	qemu-system-i386 -kernel $(BUILDDIR)$(KERNEL) $(ATADRIVE)
