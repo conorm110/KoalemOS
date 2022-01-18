@@ -39,7 +39,7 @@ Point CursorPosition;
 Framebuffer *framebuffer;
 PSF1_FONT *psf1_font;
 
-void putChar(unsigned int colour, char chr, unsigned int xOff, unsigned int yOff);
-void puts(unsigned int colour, char *str);
+void putChar(unsigned int color, char chr, unsigned int xOff, unsigned int yOff);
+void puts(unsigned int color, char *str);
 void clearScreen(unsigned int color);
 char *gets();
