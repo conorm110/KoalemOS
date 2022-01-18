@@ -8,6 +8,7 @@
 #include "ports/ports.h"
 #include "keyboard/keyboard.h"
 #include "io/textio.h"
+#include "lib/string.h"
 
 void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
 {
@@ -19,9 +20,10 @@ void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
 
     while (1)
     {
-        gets();
+        char *cmd = gets();
         CursorPosition.Y += 16;
         CursorPosition.X = 0;
+
     }
 
     return;

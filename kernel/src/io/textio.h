@@ -5,12 +5,11 @@
  * LICENSE file in the root directory of this source tree. 
  */
 
-typedef unsigned long long size_t;
 
 typedef struct
 {
 	void *BaseAddress;
-	size_t BufferSize;
+	unsigned long long BufferSize;
 	unsigned int Width;
 	unsigned int Height;
 	unsigned int PixelsPerScanLine;
