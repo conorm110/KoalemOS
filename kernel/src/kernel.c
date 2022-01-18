@@ -15,7 +15,7 @@ void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
     psf1_font = psf1_font_r;
 
     init_keyboard();
-    clearScreen(getBackgroundColor());
+    clearScreen();
 
     while (1)
     {

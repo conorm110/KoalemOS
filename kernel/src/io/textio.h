@@ -46,5 +46,5 @@ unsigned int getForegroundColor();
 
 void putChar(unsigned int color, char chr, unsigned int xOff, unsigned int yOff);
 void puts(char *str);
-void clearScreen(unsigned int color);
+void clearScreen();
 char *gets();

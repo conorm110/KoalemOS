@@ -59,13 +59,13 @@ void puts(char *str)
     }
 }
 
-void clearScreen(unsigned int color)
+void clearScreen()
 {
     CursorPosition.X = 0;
     CursorPosition.Y = 0;
     while (CursorPosition.Y < framebuffer->Height)
     {
-        putChar(backgroundColor, 0xDB, CursorPosition.X, CursorPosition.Y);
+        putChar(getBackgroundColor(), 0xDB, CursorPosition.X, CursorPosition.Y);
         CursorPosition.X += 4;
         if (CursorPosition.X + 4 > framebuffer->Width)
         {
