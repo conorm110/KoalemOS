@@ -5,22 +5,26 @@ Please note the building and virtualizing system is designed for windows 10 with
 
 All building is done in WSL so it can be easily replicated in any debian based OS. 
 
-To set up the building process, run
+To build the kernel:
 ```
-wsl chmod +x ./build
-```
-
-To build without running, run
-```
-./build
+cd kernel
+make kernel
 ```
 
-To only run virtually, run
+To build the disk image (required for running):
 ```
-qemu-system-i386 -kernel build/build/kernel.elf
+cd kernel
+make buildimg
 ```
 
-To build and run in vm, run
+To run (WINDOWS 10/11)
 ```
+cd kernel
 run
+```
+
+To run (DEBIAN BASED)
+```
+cd kernel
+make run
 ```
