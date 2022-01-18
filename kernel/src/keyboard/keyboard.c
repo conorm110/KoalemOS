@@ -50,6 +50,17 @@ char keyboard_handler()
 void backspace(unsigned int color)
 {
     CursorPosition.X = CursorPosition.X - 8;
-    puts(color, "█");
+    char *chr = "█";
+    while (*chr != 0)
+    {
+        putChar(color, *chr, CursorPosition.X, CursorPosition.Y);
+        CursorPosition.X += 8;
+        if (CursorPosition.X + 8 > framebuffer->Width)
+        {
+            CursorPosition.X = 0;
+            CursorPosition.Y += 16;
+        }
+        chr++;
+    }
     return;
 }

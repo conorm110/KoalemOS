@@ -11,6 +11,21 @@
 unsigned int backgroundColor = 0x00000000;
 unsigned int foregroundColor = 0xffffffff;
 
+void editBackgroundColor(unsigned int color) {
+    backgroundColor = color;
+    return;
+}
+void editForegroundColor(unsigned int color) {
+    foregroundColor = color;
+    return;
+}
+unsigned int getBackgroundColor() {
+    return backgroundColor;
+}
+unsigned int getForegroundColor() {
+    return foregroundColor;
+}
+
 void putChar(unsigned int color, char chr, unsigned int xOff, unsigned int yOff)
 {
     unsigned int *pixPtr = (unsigned int *)framebuffer->BaseAddress;
@@ -28,13 +43,12 @@ void putChar(unsigned int color, char chr, unsigned int xOff, unsigned int yOff)
     }
 }
 
-void puts(unsigned int color, char *str)
+void puts(char *str)
 {
-
     char *chr = str;
     while (*chr != 0)
     {
-        putChar(color, *chr, CursorPosition.X, CursorPosition.Y);
+        putChar(foregroundColor, *chr, CursorPosition.X, CursorPosition.Y);
         CursorPosition.X += 8;
         if (CursorPosition.X + 8 > framebuffer->Width)
         {

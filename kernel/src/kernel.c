@@ -15,12 +15,10 @@ void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
     psf1_font = psf1_font_r;
 
     init_keyboard();
-
-    clearScreen(0x00000000);
+    clearScreen(getBackgroundColor());
 
     while (1)
     {
-
         gets();
         CursorPosition.Y += 16;
         CursorPosition.X = 0;

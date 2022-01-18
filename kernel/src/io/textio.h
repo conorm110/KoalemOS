@@ -39,7 +39,12 @@ Point CursorPosition;
 Framebuffer *framebuffer;
 PSF1_FONT *psf1_font;
 
+void editBackgroundColor(unsigned int color);
+void editForegroundColor(unsigned int color);
+unsigned int getBackgroundColor();
+unsigned int getForegroundColor();
+
 void putChar(unsigned int color, char chr, unsigned int xOff, unsigned int yOff);
-void puts(unsigned int color, char *str);
+void puts(char *str);
 void clearScreen(unsigned int color);
 char *gets();
