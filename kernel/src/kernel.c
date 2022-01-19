@@ -10,6 +10,8 @@
 #include "io/textio.h"
 #include "lib/string.h"
 
+#include <stdbool.h>
+
 void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
 {
     framebuffer = framebuffer_r;
@@ -17,13 +19,42 @@ void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
 
     init_keyboard();
     clearScreen();
+    puts("KoalemOS v0.0.2 (UEFI)");
+    CursorPosition.Y += 16;
+    CursorPosition.X = 0;
+    puts(">>> ");
 
     while (1)
     {
-        char *cmd = gets();
+        char *c = gets();
         CursorPosition.Y += 16;
         CursorPosition.X = 0;
+        if (c[0] == 'e' && c[1] == 'c' && c[2] == 'h' && c[3] == 'o' && c[4] == ' ')
+        {
+            c += 5;
+            puts(c);
+            CursorPosition.Y += 16;
+            CursorPosition.X = 0;
+        }
+        else if (c[0] == 'h' && c[1] == 'e' && c[2] == 'l' && c[3] == 'p')
+        {
+            puts("echo [arg] - prints [arg] to screen");
+            CursorPosition.Y += 16;
+            CursorPosition.X = 0;
+            puts("help - prints list of commands");
+            CursorPosition.Y += 16;
+            CursorPosition.X = 0;
+        }
+        else
+        {
+            puts("CmdErr: \"");
+            puts(c);
+            puts("\" undefined (most recent call). Type help for list of commands.");
+            CursorPosition.Y += 16;
+            CursorPosition.X = 0;
+        }
 
+        puts(">>> ");
     }
 
     return;

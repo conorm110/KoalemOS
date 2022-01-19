@@ -4,13 +4,13 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree. 
  */
+#include <stdbool.h>
+#include <stddef.h>
 
 char *itoa(int num, char *str, int base);
 void reverse(char str[], int length);
 void swap(char *x, char *y);
 
-#include <stdbool.h>
-#include <stddef.h>
 
 char *memchr(register int *src_void, int c, size_t length);
 int memcmp(int str1, int str2, size_t count);
