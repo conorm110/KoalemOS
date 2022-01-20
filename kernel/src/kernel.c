@@ -38,11 +38,20 @@ void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
         }
         else if (c[0] == 'h' && c[1] == 'e' && c[2] == 'l' && c[3] == 'p')
         {
+            puts("clear - clears all graphics from screen");
+            CursorPosition.Y += 16;
+            CursorPosition.X = 0;
             puts("echo [arg] - prints [arg] to screen");
             CursorPosition.Y += 16;
             CursorPosition.X = 0;
             puts("help - prints list of commands");
             CursorPosition.Y += 16;
+            CursorPosition.X = 0;
+        }
+        else if (c[0] == 'c' && c[1] == 'l' && c[2] == 'e' && c[3] == 'a' && c[4] == 'r')
+        {
+            clearScreen();
+            CursorPosition.Y = 0;
             CursorPosition.X = 0;
         }
         else
