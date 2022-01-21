@@ -30,10 +30,17 @@ void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
         char *c = gets();
         CursorPosition.Y += 16;
         CursorPosition.X = 0;
-        if (c[0] == 'e' && c[1] == 'c' && c[2] == 'h' && c[3] == 'o' && c[4] == ' ')
+        if (c[0] == 'e' && c[1] == 'c' && c[2] == 'h' && c[3] == 'o')
         {
-            c += 5;
-            puts(c);
+            if (strlen(c) < 6)
+            {
+                puts("ArgErr: (most recent call) insufficiend arg length. Type help for list of commands.");
+            }
+            else
+            {
+                c += 5;
+                puts(c);
+            }
             CursorPosition.Y += 16;
             CursorPosition.X = 0;
         }
