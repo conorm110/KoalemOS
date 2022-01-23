@@ -55,7 +55,10 @@ void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
             puts("help - prints list of commands");
             CursorPosition.Y += 16;
             CursorPosition.X = 0;
-            puts("pci [arg] - interact with pci, type pci help for pci command list");
+            puts("pci [arg] - interact with pci, type pci -h for pci command list");
+            CursorPosition.Y += 16;
+            CursorPosition.X = 0;
+            puts("pwr [arg] - power options for os, type pwr -h for pwr command list");
             CursorPosition.Y += 16;
             CursorPosition.X = 0;
         }
@@ -68,18 +71,18 @@ void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
         else if (c[0] == 'p' && c[1] == 'c' && c[2] == 'i' && c[3] == ' ')
         {
             c += 4;
-            if (c[0] == 'd' && c[1] == 'e' && c[2] == 'b' && c[3] == 'u' && c[4] == 'g')
+            if (c[0] == '-' && c[1] == 'd')
             {
                 test_pci();
                 CursorPosition.Y += 16;
                 CursorPosition.X = 0;
             }
-            else if (c[0] == 'h' && c[1] == 'e' && c[2] == 'l' && c[3] == 'p')
+            else if (c[0] == '-' && c[1] == 'h')
             {
-                puts("pci debug - lists all pci devices");
+                puts("pci -d - lists all pci devices");
                 CursorPosition.Y += 16;
                 CursorPosition.X = 0;
-                puts("pci help - prints list of commands");
+                puts("pci -h - prints list of commands");
                 CursorPosition.Y += 16;
                 CursorPosition.X = 0;
             }
