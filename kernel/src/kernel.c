@@ -92,6 +92,43 @@ void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
                 CursorPosition.X = 0;
             }
         }
+        else if (c[0] == 'p' && c[1] == 'w' && c[2] == 'r')
+        {
+            c += 4;
+            if (c[0] == '-')
+            {
+                c += 1;
+                if (c[0] == 'v')
+                {
+                    port_word_out(0x604, 0x2000);  // QEMU (NEW)
+                    port_word_out(0xB004, 0x2000); // QEMU < 2.0 / BOCHS
+                    port_word_out(0x4004, 0x3400); // VirtualBox
+                }
+                else if (c[0] == 'h')
+                {
+                    puts("pwr -v - power off virtual machine");
+                    CursorPosition.Y += 16;
+                    CursorPosition.X = 0;
+                    puts("pwr -h - get list of pwr args");
+                    CursorPosition.Y += 16;
+                    CursorPosition.X = 0;
+                }
+                else
+                {
+                    puts("ArgErr: \"");
+                    puts(c);
+                    puts("\" is not a valid arg. (most recent call). Type pwr -h for list of commands.");
+                    CursorPosition.Y += 16;
+                    CursorPosition.X = 0;
+                }
+            }
+            else
+            {
+                puts("ArgErr: Invalid argument syntax (most recent call). Type pwr -h for list of commands.");
+                CursorPosition.Y += 16;
+                CursorPosition.X = 0;
+            }
+        }
         else
         {
             puts("CmdErr: \"");
