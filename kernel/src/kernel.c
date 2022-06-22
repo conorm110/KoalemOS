@@ -20,7 +20,7 @@ void _start(Framebuffer *framebuffer_r, PSF1_FONT *psf1_font_r)
 
     init_keyboard();
     clearScreen();
-    puts("KoalemOS v0.0.2 (UEFI)");
+    puts("KoalemOS v0.0.2BF (UEFI)");
     CursorPosition.Y += 16;
     CursorPosition.X = 0;
     puts(">>> ");
