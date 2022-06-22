@@ -1,7 +1,24 @@
 #include "os.h"
-#include "../kernel.h"
+
+extern void puts(char *str);
+extern char *gets();
+extern void clearScreen();
+extern void test_pci();
+extern void port_word_out(unsigned short port, unsigned short data);
+extern void init_keyboard();
+extern int strlen(const char *str);
+
+struct Point
+{
+	unsigned int X;
+	unsigned int Y;
+};
+
+extern struct Point CursorPosition;
 
 void os_main() {
+    init_keyboard();
+    clearScreen();
     puts("KoalemOS v0.0.3 (UEFI)");
     CursorPosition.Y += 16;
     CursorPosition.X = 0;
