@@ -28,14 +28,13 @@ typedef struct
 	void *glyphBuffer;
 } PSF1_FONT;
 
-struct Point
+typedef struct
 {
 	unsigned int X;
 	unsigned int Y;
-};
+} Point;
 
-struct Point CursorPosition;
-
+Point CursorPosition;
 Framebuffer *framebuffer;
 PSF1_FONT *psf1_font;
 
