@@ -1,14 +1,7 @@
-/**
- * Copyright (c) 2021, Conor Mika
- * All rights reserved.
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. 
- */
-
+#include "../port/port.h"
+#include "../graphics/render_text.h"
 #include "pci.h"
-#include "../io/textio.h"
-#include "../ports/ports.h"
-#include "../lib/string.h"
+#include "../lib/klm_string.h"
 
 /**
  * pci_read - read pci device
@@ -30,20 +23,8 @@ unsigned long pci_read(unsigned long bus, unsigned long device, unsigned long fu
 
 void test_pci(){
     unsigned long bus, device, function, vendor, subclass;
-    CursorPosition.Y += 16;
-    CursorPosition.X = 0;
-    puts("Devices over PCI:");
-    CursorPosition.Y += 16;
-    CursorPosition.X = 0;
-    puts("-------------------------------------------------------");
-    CursorPosition.Y += 16;
-    CursorPosition.X = 0;
-    puts("| BUS | DEV | FUN | VENDOR ID | DEVICE ID | CLAS:SUBC |");
-    CursorPosition.Y += 16;
-    CursorPosition.X = 0;
-    puts("-------------------------------------------------------");
-    CursorPosition.Y += 16;
-    CursorPosition.X = 0;
+    print_str("BUS, DEV, FUN, VENDOR ID, DEVICE ID, CLAS:SUBC");
+    print_nl();
     for(bus = 0; bus < 256; bus++)
     {
         for(device = 0; device < 32; device++)
@@ -54,33 +35,25 @@ void test_pci(){
                 if(vendor != 0xFFFFFFFF)
                 {
                     subclass = pci_read(bus, device, function, PCI_CLASS_SUBCLASS, PCI_CLASS_SUBCLASS_REG);
-                    
-                    puts("|  ");
                     char buffer[128];
-                    puts(itoa(bus, buffer, 10));
-                    puts("  |  ");
-                    puts(itoa(device, buffer, 10));
-                    puts("  |  ");
-                    puts(itoa(function, buffer, 10));
-                    puts("  |    ");
-                    puts(itoa((vendor & 0x0000FFFF), buffer, 16));
-                    puts("   |   ");
-                    puts(itoa((vendor & 0xFFFF0000 >> 16), buffer, 16));
-                    puts("    | ");
-                    puts(itoa((subclass & 0x000000FF), buffer, 16));
-                    puts(":");
-                    puts(itoa(((subclass & 0x0000FF00) >> 8), buffer, 16));
-                    CursorPosition.X = 54 * 8;
-                    puts("|");
-                    CursorPosition.Y += 16;
-                    CursorPosition.X = 0;
+                    print_str(itoa(bus, buffer, 10));
+                    print_str(", ");
+                    print_str(itoa(device, buffer, 10));
+                    print_str(", ");
+                    print_str(itoa(function, buffer, 10));
+                    print_str(", ");
+                    print_str(itoa((vendor & 0x0000FFFF), buffer, 16));
+                    print_str(", ");
+                    print_str(itoa((vendor & 0xFFFF0000 >> 16), buffer, 16));
+                    print_str(", ");
+                    print_str(itoa((subclass & 0x000000FF), buffer, 16));
+                    print_str(":");
+                    print_str(itoa(((subclass & 0x0000FF00) >> 8), buffer, 16));
+                    print_nl();
                 }
             }
         }
     }
-    puts("-------------------------------------------------------");
-    CursorPosition.Y += 16;
-    CursorPosition.X = 0;
     return;
 }
 /**

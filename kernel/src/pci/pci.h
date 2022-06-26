@@ -1,12 +1,3 @@
-/**
- * Copyright (c) 2021, Conor Mika
- * All rights reserved.
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. 
- */
-
-
-
 #define PCI_CONFIG  0xCF8
 #define PCI_DATA    0xCFC
 
@@ -31,6 +22,3 @@
 #define PCI_BASE_ADDRESS_5_OFFSET   0x24
 
 void test_pci();
-void pci_find(unsigned char _class, unsigned char subclass, unsigned long* bus, unsigned long* device, unsigned long* function, unsigned short* vendor);
-unsigned long pci_read(unsigned long bus, unsigned long device, unsigned long function, unsigned long offset, unsigned long reg);
-void pci_write(unsigned long bus, unsigned long device, unsigned long function, unsigned long offset, unsigned long reg, unsigned long data);

@@ -36,12 +36,12 @@ Framebuffer* InitializeGOP(){
 
 	status = uefi_call_wrapper(BS->LocateProtocol, 3, &gopGuid, NULL, (void**)&gop);
 	if(EFI_ERROR(status)){
-		Print(L"Unable to locate GOP\n\r");
+		Print(L"ERR: GOP NOT FOUND\n\r");
 		return NULL;
 	}
 	else
 	{
-		Print(L"GOP located\n\r");
+		Print(L"GOP LOCATED\n\r");
 	}
 
 	framebuffer.BaseAddress = (void*)gop->Mode->FrameBufferBase;
@@ -118,14 +118,23 @@ int memcmp(const void* aptr, const void* bptr, size_t n){
 	return 0;
 }
 
+typedef struct {
+	Framebuffer* framebuffer;
+	PSF1_FONT* psf1_Font;
+	EFI_MEMORY_DESCRIPTOR* mMap;
+	UINTN mMapSize;
+	UINTN mMapDescSize;
+} BootInfo;
+
 EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
 	InitializeLib(ImageHandle, SystemTable);
+
 	EFI_FILE* Kernel = LoadFile(NULL, L"kernel.elf", ImageHandle, SystemTable);
 	if (Kernel == NULL){
-		Print(L"Could not load kernel \n\r");
+		Print(L"ERR: KERNEL LOADING FAILED\n\r");
 	}
 	else{
-		Print(L"Kernel Loaded Successfully \n\r");
+		Print(L"KERNEL LOADED \n\r");
 	}
 
 	Elf64_Ehdr header;
@@ -149,11 +158,11 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
 		header.e_version != EV_CURRENT
 	)
 	{
-		Print(L"kernel format is bad\r\n");
+		Print(L"ERR: KFORMAT BAD\r\n");
 	}
 	else
 	{
-		Print(L"kernel header successfully verified\r\n");
+		Print(L"KHEADER VERIFIED\r\n");
 	}
 
 	Elf64_Phdr* phdrs;
@@ -185,30 +194,51 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
 		}
 	}
 
-	Print(L"Kernel Loaded\n\r");
+	Print(L"KERNEL LOADED\n\r");
 	
-	void (*KernelStart)(Framebuffer*, PSF1_FONT*) = ((__attribute__((sysv_abi)) void (*)(Framebuffer*, PSF1_FONT*) ) header.e_entry);
+	
 
 	PSF1_FONT* newFont = LoadPSF1Font(NULL, L"zap-light16.psf", ImageHandle, SystemTable);
 	if (newFont == NULL){
-		Print(L"Font is not valid or is not found\n\r");
+		Print(L"ERR: BAD FONT FORMAT\n\r");
 	}
 	else
 	{
-		Print(L"Font found. char size = %d\n\r", newFont->psf1_Header->charsize);
+		Print(L"FONT FOUND, CHAR SIZE %d\n\r", newFont->psf1_Header->charsize);
 	}
 	
 
 	Framebuffer* newBuffer = InitializeGOP();
 
-	Print(L"Base: 0x%x\n\rSize: 0x%x\n\rWidth: %d\n\rHeight: %d\n\rPixelsPerScanline: %d\n\r", 
+	Print(L"BASE: 0x%x\n\rSIZE: 0x%x\n\rWIDTH: %d\n\rHEIGHT: %d\n\rPIXELS PER SCANLINE: %d\n\r", 
 	newBuffer->BaseAddress, 
 	newBuffer->BufferSize, 
 	newBuffer->Width, 
 	newBuffer->Height, 
 	newBuffer->PixelsPerScanLine);
 
-	KernelStart(newBuffer, newFont);
+	EFI_MEMORY_DESCRIPTOR* Map = NULL;
+	UINTN MapSize, MapKey;
+	UINTN DescriptorSize;
+	UINT32 DescriptorVersion;
+	{
+		SystemTable->BootServices->GetMemoryMap(&MapSize,Map, &MapKey, &DescriptorSize, &DescriptorVersion);
+		SystemTable->BootServices->AllocatePool(EfiLoaderData, MapSize, (void**)&Map);
+		SystemTable->BootServices->GetMemoryMap(&MapSize,Map, &MapKey, &DescriptorSize, &DescriptorVersion);
+	}
+
+	void (*KernelStart)(BootInfo*) = ((__attribute__((sysv_abi)) void (*)(BootInfo*) ) header.e_entry);
+	
+	BootInfo bootInfo;
+	bootInfo.framebuffer = newBuffer;
+	bootInfo.psf1_Font = newFont;
+	bootInfo.mMap = Map;
+	bootInfo.mMapSize = MapSize;
+	bootInfo.mMapDescSize = DescriptorSize;
+
+	SystemTable->BootServices->ExitBootServices(ImageHandle, MapKey);
+	
+	KernelStart(&bootInfo);
 
 	return EFI_SUCCESS; // Exit the UEFI application
 }
