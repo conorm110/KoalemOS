@@ -66,3 +66,16 @@ char* itoa(int value, char* buffer, int base)
     // reverse the string and return it
     return reverse(buffer, 0, i - 1);
 }
+
+int strncmp(char* a, char* b, int n)
+{
+    int equ = 1;
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] != b[i])
+        {
+            equ = 0;
+        }
+    }
+    return equ;
+}

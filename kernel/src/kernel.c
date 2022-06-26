@@ -7,6 +7,54 @@
 #include "lib/klm_string.h"
 #include "pci/pci.h"
 
+void klm_terminal()
+{
+    print_nl();
+    print_str(">>> ");
+    char buffer[128];
+    int i = 0;
+    while (1)
+    {
+        char current_char = read_char();
+        if (current_char != '\n' && current_char!= '\b')
+        {
+            buffer[i] = current_char;
+            print_char(current_char);
+            i++;
+        }
+        else if (current_char == '\n')
+        {
+            buffer[i] == '\0';
+            print_nl();
+
+
+            
+            if (strncmp(buffer, "pci", 3))
+            {
+                test_pci();
+            }
+            else
+            {
+                print_str("-bash: ");
+                print_str(buffer);
+                print_str(": command not found");
+            }
+
+
+            i = 0;
+            for (int j = 0; j < 128; j++)
+            {
+                buffer[j] = '\0';
+            }
+            klm_terminal();
+        }
+        else if (current_char == '\b')
+        {
+            i--;
+            print_char('\b');
+        }
+    }
+}
 
 void _start(BootInfo* boot_info){
     klm_framebuffer = *boot_info->framebuffer;
@@ -18,38 +66,8 @@ void _start(BootInfo* boot_info){
     
     
     print_str("Kernel Loaded!");
-    print_nl();
     
-    print_str(">>> ");
-    while (1) 
-    {
-        char c0 = read_char();
-        print_char(c0);
-        if (c0 == 'p')
-        {
-            char c1 = read_char();
-            print_char(c1);
-            if (c1 == 'c')
-            {
-                char c2 = read_char();
-                print_char(c2);
-                if (c2 == 'i')
-                {
-                    char c3 = read_char();
-                    print_char(c3);
-                    if (c3 == '\n')
-                    {
-                        test_pci();
-                        print_str(">>> ");
-                    }
-                }
-                else if(c2=='\n'){print_str(">>> ");}
-            }
-            else if(c1=='\n'){print_str(">>> ");}
-        }
-        else if(c0=='\n'){print_str(">>> ");}
-    }
-    
+    klm_terminal();
 
     return;
 }
