@@ -5,3 +5,8 @@ void print_str(char* str);
 void print_int(int n, int base);
 void print_nl();
 void set_cursor_x(int n);
+void clear();
+void set_background(unsigned int val);
+void set_foreground(unsigned int val);
+unsigned int get_background();
+unsigned int get_foreground();

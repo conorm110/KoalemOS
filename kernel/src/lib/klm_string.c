@@ -79,3 +79,12 @@ int strncmp(char* a, char* b, int n)
     }
     return equ;
 }
+
+int strlen(const char *str)
+{
+    register const char *s;
+
+    for (s = str; *s; ++s)
+        ;
+    return (s - str);
+}

@@ -23,7 +23,7 @@ unsigned long pci_read(unsigned long bus, unsigned long device, unsigned long fu
 
 void test_pci(){
     unsigned long bus, device, function, vendor, subclass;
-    print_str("BUS, DEV, FUN, VENDOR ID, DEVICE ID, CLAS:SUBC");
+    print_str("VENDOR ID:DEVICE ID, BUS, FUN, DEV, CLASS:SUBCLASS");
     print_nl();
     for(bus = 0; bus < 256; bus++)
     {
@@ -35,20 +35,29 @@ void test_pci(){
                 if(vendor != 0xFFFFFFFF)
                 {
                     subclass = pci_read(bus, device, function, PCI_CLASS_SUBCLASS, PCI_CLASS_SUBCLASS_REG);
-                    char buffer[128];
-                    print_str(itoa(bus, buffer, 10));
-                    print_str(", ");
-                    print_str(itoa(device, buffer, 10));
-                    print_str(", ");
-                    print_str(itoa(function, buffer, 10));
-                    print_str(", ");
-                    print_str(itoa((vendor & 0x0000FFFF), buffer, 16));
-                    print_str(", ");
-                    print_str(itoa((vendor & 0xFFFF0000 >> 16), buffer, 16));
-                    print_str(", ");
-                    print_str(itoa((subclass & 0x000000FF), buffer, 16));
+                    char buffer0[] = "\0\0\0\0\0\0\0\0";
+                    char buffer1[] = "\0\0\0\0\0\0\0\0";
+                    char buffer2[] = "\0\0\0\0\0\0\0\0";
+                    char buffer3[] = "\0\0\0\0\0\0\0\0";
+                    char buffer4[] = "\0\0\0\0\0\0\0\0";
+                    char buffer5[] = "\0\0\0\0\0\0\0\0";
+                    char buffer6[] = "\0\0\0\0\0\0\0\0";
+                    char *vendor_id = itoa((vendor & 0xFFFF0000), buffer1, 16);
+                    vendor_id[4] = '\0';
+                    char *bus_str = itoa(device, buffer4, 10);
+                    print_str(itoa((vendor & 0x0000FFFF), buffer0, 16));
                     print_str(":");
-                    print_str(itoa(((subclass & 0x0000FF00) >> 8), buffer, 16));
+                    print_str(vendor_id);
+                    print_str(", ");
+                    print_str(itoa(bus, buffer2, 10));
+                    print_str(", ");
+                    print_str(itoa(function, buffer3, 10));
+                    print_str(", ");
+                    print_str(bus_str);
+                    print_str(", ");
+                    print_str(itoa((subclass & 0x000000FF), buffer5, 16));
+                    print_str(":");
+                    print_str(itoa(((subclass & 0x0000FF00) >> 8), buffer6, 16));
                     print_nl();
                 }
             }
