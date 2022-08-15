@@ -22,3 +22,6 @@
 #define PCI_BASE_ADDRESS_5_OFFSET   0x24
 
 void test_pci();
+void pci_write(unsigned long bus, unsigned long device, unsigned long function, unsigned long offset, unsigned long reg, unsigned long data);
+unsigned long pci_read(unsigned long bus, unsigned long device, unsigned long function, unsigned long offset, unsigned long reg);
+void pci_find(unsigned char _class, unsigned char subclass, unsigned long* bus, unsigned long* device, unsigned long* function, unsigned short* vendor);
